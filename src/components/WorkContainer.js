@@ -6,8 +6,8 @@ class WorkContainer extends React.Component {
       <div className="container h-auto flex h-64 content-wrapper w-100 justify-between">
         <div className="side-nav-bar h-full flex flex-col px-6 py-6 bg-gray-200 shadow-xl justify-start items-left w-1/4">
           <div className="container bg-gray-400 p-2 my-6 text-gray-600 rounded-md shadow-xl">
-            <h3>Welcome, Jhon</h3>
-            <p>Time</p>
+            <h3>Welcome, sudhir</h3>
+            
           </div>
           <a
             href="/"
@@ -46,9 +46,12 @@ class WorkContainer extends React.Component {
             </span>
           </a>
         </div>
+
+
+        
         <div className="right-content w-3/4 p-10">
           <h1 className="mt-3 bg-gray-400 p-2 my-6 text-gray-600  shadow-sm">
-            <span>Department Tickets</span>
+            <span>Edit Form</span>
           </h1>
           <div className="container-options">
             <form action="" className="m-4">
