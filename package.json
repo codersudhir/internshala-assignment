@@ -1,7 +1,7 @@
 {
   "name": "react",
   "version": "1.0.0",
-  "description": "React example starter project",
+  "description": "React",
   "keywords": [
     "react",
     "starter"
@@ -14,17 +14,15 @@
     "react-scripts": "3.0.1"
   },
   "devDependencies": {
+    "nodemon": "^3.0.1",
     "tailwindcss": "1.0.4"
   },
   "scripts": {
     "autoprefixer": "9.6.0",
     "postcss": "7.0.17",
-    "build:style":"tailwind build src/styles/index.pcss -c tailwind.js -o src/styles/tailwind-pre-build.css",
     "start": " react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "dev": "nodemon backend/src/index.js"
+    "dev": "nodemon backend/index.js"
   },
   "browserslist": [
     ">0.2%",
