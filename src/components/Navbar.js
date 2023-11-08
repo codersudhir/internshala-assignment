@@ -9,6 +9,9 @@ export default function Navbar() {
         <Link to="/">
           <li> Home </li>
         </Link>
+        <Link to="/showform">
+          <li> Showform </li>
+        </Link>
         <div className="flex ">
         <Link to="/">
           <li> FAQ </li>

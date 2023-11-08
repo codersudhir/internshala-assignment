@@ -9,7 +9,7 @@ const initialFormData = [
 
 const FormBuilder = () => {
   const [formData, setFormData] = useState(initialFormData);
-  const [data,senddata]=useState({question:"",answer:[]})
+  const [data,senddata]=useState({question:"",answer:"",option:[]})
   const onDragEnd = (result) => {
     if (!result.destination) return;
 
@@ -31,9 +31,22 @@ const FormBuilder = () => {
     setFormData(updatedFormData);
   };
   
-const handleSubmit=()=>{
-  console.log(data);
+const handleSubmit=async()=>{
+  fetch("https://unusual-fox-threads.cyclic.app/formdata", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  })
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+    console.log(data);
 }
+
+useEffect(()=>{
+  senddata({...data,option:["1","2","3","4"]});
+},[])
   return (
    
    <>
@@ -50,7 +63,7 @@ const handleSubmit=()=>{
           >
             
           <div >
-              <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text" placeholder='Add A question' onChange={(e)=>{senddata({question:e.target.value,answer:formData})}} />
+              <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text" placeholder='Add A question' onChange={(e)=>{senddata({question:e.target.value,answer:"",option:formData})}} />
           </div>
             {formData.map((formElement, index) => (
               <Draggable key={formElement.id} draggableId={formElement.id} index={index}>
@@ -63,10 +76,7 @@ const handleSubmit=()=>{
                   >
                    
 
-                    <div className="p-2 py-3"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 9.563C9 9.252 9.252 9 9.563 9h4.874c.311 0 .563.252.563.563v4.874c0 .311-.252.563-.563.563H9.564A.562.562 0 019 14.437V9.564z" />
-                   </svg></div>
+                    <div className=""> <span className=' mx-5'><svg class="h-4 w-4 text-black"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="4" y="4" width="6" height="6" rx="1" />  <rect x="14" y="4" width="6" height="6" rx="1" />  <rect x="4" y="14" width="6" height="6" rx="1" />  <rect x="14" y="14" width="6" height="6" rx="1" /></svg></span></div>
                     <input
                       type="text"
                       placeholder="enter"
@@ -104,10 +114,7 @@ const handleSubmit=()=>{
                   >
                    
 
-                    <div className="p-2 py-3"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 9.563C9 9.252 9.252 9 9.563 9h4.874c.311 0 .563.252.563.563v4.874c0 .311-.252.563-.563.563H9.564A.562.562 0 019 14.437V9.564z" />
-                   </svg></div>
+                    <div className=""> <span className=' mx-5'><svg class="h-4 w-4 text-black"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="4" y="4" width="6" height="6" rx="1" />  <rect x="14" y="4" width="6" height="6" rx="1" />  <rect x="4" y="14" width="6" height="6" rx="1" />  <rect x="14" y="14" width="6" height="6" rx="1" /></svg></span></div>
                    <select  onChange={(e) => handleSelectChange(index, e.target.value)} class="py-3 px-4 pe-9 block w-full bg-gray-100 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:border-transparent dark:text-gray-400 dark:focus:ring-gray-600">
   
                  <option>1</option>
@@ -123,7 +130,7 @@ const handleSubmit=()=>{
         )}
       </Droppable>
     </DragDropContext>
-    <div className="flex justify-end w-25 p-5" onClick={(e)=>{setFormData([...formData, { id: String(formData.length+1), type: 'text', label: 'text Input', placeholder: 'Enter text' },])}}> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+    <div className="flex justify-end w-25 p-5" onClick={(e)=>{setFormData([...formData, { id: String(formData.length+1),  },])}}> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </div>

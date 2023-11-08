@@ -8,11 +8,10 @@ import ClozeFormBuilder from './Form/Clozeformbuilder'
 
 const WorkContainer = () => {
   return (
-    <div>
+    <div className='border p-2'>
       <FormBuilder/>
       <ClozeFormBuilder/>
       <Comprehension/>
-    
     </div>
   )
 }
